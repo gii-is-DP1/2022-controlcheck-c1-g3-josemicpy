@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import org.springframework.samples.petclinic.model.BaseEntity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -13,12 +16,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class RecoveryRoomType {
+public class RecoveryRoomType extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	protected Integer id;
+	@NotBlank
 	@Size(min = 5, max = 50)
-	@Column(name = "name")
-	private String name;
+	String name;
 }

@@ -32,9 +32,15 @@ public class RecoveryRoomService {
 		return recoveryRoomRepo.getRecoveryRoomType(typeName);
 	}
 
-	@Transactional
+	@Transactional(rollbackFor = DuplicatedRoomNameException.class)
 	public RecoveryRoom save(RecoveryRoom p) throws DuplicatedRoomNameException {
-		return recoveryRoomRepo.save(p);
+		List<RecoveryRoom> rooms = getAll();
+		for (RecoveryRoom r : rooms)
+			if (r.getName().equals(p.getName()) && r.getRoomType().equals(p.getRoomType())
+					&& !r.getId().equals(p.getId()))
+				throw new DuplicatedRoomNameException();
+		recoveryRoomRepo.save(p);
+		return p;
 	}
 
 }
