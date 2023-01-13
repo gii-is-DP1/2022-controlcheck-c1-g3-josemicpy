@@ -41,7 +41,7 @@ public class Visit extends BaseEntity {
 	/**
 	 * Holds value of property date.
 	 */
-	@Column(name = "visit_date")        
+	@Column(name = "visit_date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate date;
 
@@ -59,6 +59,9 @@ public class Visit extends BaseEntity {
 	@JoinColumn(name = "pet_id")
 	private Pet pet;
 
+	@ManyToOne
+	RecoveryRoom recoveryRoom;
+
 	/**
 	 * Creates a new instance of Visit for the current date
 	 */
@@ -68,6 +71,7 @@ public class Visit extends BaseEntity {
 
 	/**
 	 * Getter for property date.
+	 * 
 	 * @return Value of property date.
 	 */
 	public LocalDate getDate() {
@@ -76,6 +80,7 @@ public class Visit extends BaseEntity {
 
 	/**
 	 * Setter for property date.
+	 * 
 	 * @param date New value of property date.
 	 */
 	public void setDate(LocalDate date) {
@@ -84,6 +89,7 @@ public class Visit extends BaseEntity {
 
 	/**
 	 * Getter for property description.
+	 * 
 	 * @return Value of property description.
 	 */
 	public String getDescription() {
@@ -92,6 +98,7 @@ public class Visit extends BaseEntity {
 
 	/**
 	 * Setter for property description.
+	 * 
 	 * @param description New value of property description.
 	 */
 	public void setDescription(String description) {
@@ -100,6 +107,7 @@ public class Visit extends BaseEntity {
 
 	/**
 	 * Getter for property pet.
+	 * 
 	 * @return Value of property pet.
 	 */
 	public Pet getPet() {
@@ -108,6 +116,7 @@ public class Visit extends BaseEntity {
 
 	/**
 	 * Setter for property pet.
+	 * 
 	 * @param pet New value of property pet.
 	 */
 	public void setPet(Pet pet) {
@@ -115,12 +124,11 @@ public class Visit extends BaseEntity {
 	}
 
 	public RecoveryRoom getRecoveryRoom() {
-		// To be implemented
-		return null;
+		return recoveryRoom;
 	}
 
 	public void setRecoveryRoom(RecoveryRoom room) {
-		// To be implemented
+		this.recoveryRoom = room;
 	}
 
 }
